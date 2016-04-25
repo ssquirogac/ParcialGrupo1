@@ -5,6 +5,11 @@
  */
 package UI;
 
+import Servicios.UniversidadServicios;
+import datos.Person;
+import datos.Staff;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,7 +18,8 @@ import java.util.Scanner;
  */
 public class UI {
     
-    public static void main(String arg[]){
+    public static void main(String arg[]) throws FileNotFoundException{
+        UniversidadServicios servicios = new UniversidadServicios();
         Scanner seleccion = new Scanner(System.in);
         System.out.println("Opciones");
         System.out.println("1. Cargar. 2. Listar personas. 3. Salarios");
@@ -24,18 +30,21 @@ public class UI {
             opcion = seleccion.nextInt();
             switch(opcion){
                 case 1:
-                    
-                    break;
+                    servicios.cargarDatos();
+                break;
                 case 2:
-                    
-                    break;
+                    ArrayList<Person> persons = servicios.listarPersonas();
+                    for(Person p : persons)
+                        System.out.println(p);
+                break;
                 case 3:
-                    
-                    break;
+                    ArrayList<Staff> staffs = servicios.listarStaff();
+                    for(Staff s : staffs)
+                        System.out.println(s);
+                break;
                 case 4:
                     
-                    break;
-                    
+                break;
                 default:
                     System.out.println("Opcion Invalida");
                     System.out.println("Baby... Haste un favor a ti misma y vacila con... Los Favoritos.... praaa");
